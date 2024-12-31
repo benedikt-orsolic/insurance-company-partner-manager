@@ -1,0 +1,86 @@
+@model IList<Models.PartnerDisplay>
+@{ViewData["Title"] = "Index";}
+
+<h1>Index</h1>
+
+<p>
+	<a asp-action="AddPartner">Add new partner</a>
+</p>
+<table class="table-striped table-hover table-bordered">
+	<thead>
+		<tr>
+			<th>
+				Full name
+			</th>
+			<th>
+				Partner type
+			</th>
+			<th>
+				Croatian pin ( OIB )
+			</th>
+			<th>
+				Created at utc
+			</th>
+			<th>
+				Is foreign
+			</th>
+			<th>
+				Partner number
+			</th>
+			<th>
+				Gender
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model) {
+		<tr 
+			class="@(@item.CreatedSuccess ? " table-success" : "" ) @(@item.HasPolicyTrigger ? " table-info" : "")"
+			onclick="(async () => {
+				const response = await fetch('/PartnerList/PartnerDetails/@item.PartnerNumber');
+				const responseAsTxt = await response.text();
+				const modalElement = document.getElementById('PartnerDetailsModal');
+				modalElement.innerHTML = responseAsTxt;
+				modalElement.style.display = 'block';
+			})()"
+		>
+			<td asp-action="Index" asp-route-partnerNumber="@item.PartnerNumber">
+				@(@item.HasPolicyTrigger ? "*" : "") @Html.DisplayFor(modelItem => item.FullName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PartnerTypeId)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CroatianPin)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CreatedAtUtc)
+			</td>
+			<td>
+				<input disabled type='checkbox' @(@item.IsForeign==true ? "checked='checked'" : "")>
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PartnerNumber)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Gender)
+			</td>
+			<td>
+				@Html.ActionLink(
+				linkText: "Add policy",
+				actionName: "AddPolicy",
+				controllerName: "InsurancePolicy",
+				routeValues: new {
+				PartnerNumber = @item.PartnerNumber
+				},
+				htmlAttributes: null
+				)
+			</td>
+			<td>
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>
+<div class="modal" id="PartnerDetailsModal"></div>

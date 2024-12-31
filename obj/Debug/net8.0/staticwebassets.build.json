@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "0HMMSUBqFH/HQ66w21G6DSQ9+MBncVII+pRk6YOS45k=",
+  "Source": "insurance-company-partner-manager",
+  "BasePath": "_content/insurance-company-partner-manager",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "insurance-company-partner-manager/wwwroot",
+      "Source": "insurance-company-partner-manager",
+      "ContentRoot": "/home/benedikt/Development/insurance-company-partner-manager/wwwroot/",
+      "BasePath": "_content/insurance-company-partner-manager",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/benedikt/Development/insurance-company-partner-manager/wwwroot/favicon.ico",
+      "SourceId": "insurance-company-partner-manager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/benedikt/Development/insurance-company-partner-manager/wwwroot/",
+      "BasePath": "_content/insurance-company-partner-manager",
+      "RelativePath": "favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/favicon.ico"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "/home/benedikt/Development/insurance-company-partner-manager/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.insurance-company-partner-manager.props",
+      "PackagePath": "build\\insurance-company-partner-manager.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.insurance-company-partner-manager.props",
+      "PackagePath": "buildMultiTargeting\\insurance-company-partner-manager.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.insurance-company-partner-manager.props",
+      "PackagePath": "buildTransitive\\insurance-company-partner-manager.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.insurance-company-partner-manager.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
