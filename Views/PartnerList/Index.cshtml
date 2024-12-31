@@ -1,0 +1,94 @@
+@model IList<Models.Dto.PartnerListDisplayDto>
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+	<a asp-action="AddPartner">Add new partner</a>
+</p>
+<table class="table table-responsive-xl table-striped table-hover table-bordered">
+	<thead>
+		<tr>
+			<th>
+				Full name
+			</th>
+			<th>
+				Partner type
+			</th>
+			<th>
+				Croatian pin ( OIB )
+			</th>
+			<th>
+				Created at utc
+			</th>
+			<th class="vertical-text">
+				Is foreign
+			</th>
+			<th>
+				Partner number
+			</th>
+			<th class="vertical-text">
+				Gender
+			</th>
+			<th class="vertical-text">Add policy</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr id="PartnerRow-@(item.PartnerNumber)" class="@(@item.CreatedSuccess ? " table-success" : "" )" onclick="(async () => {
+				const response = await fetch('/PartnerList/PartnerDetails/@item.PartnerNumber');
+				const responseAsTxt = await response.text();
+				const modalElement = document.getElementById('PartnerDetailsModal');
+				modalElement.innerHTML = responseAsTxt;
+				modalElement.style.display = 'block';
+			})()">
+				<td class="@(@item.HasPolicyTrigger ? " partner-vip" : "")" asp-action="Index"
+					asp-route-partnerNumber="@item.PartnerNumber">
+					@Html.DisplayFor(modelItem => item.FullName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PartnerTypeId)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CroatianPin)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CreatedAtUtc)
+				</td>
+				<td>
+					<input disabled type='checkbox' @(@item.IsForeign == true ? "checked='checked'" : "")>
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PartnerNumber)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Gender)
+				</td>
+				<td>
+					@Html.ActionLink(
+				linkText: "new",
+				actionName: "AddPolicy",
+				controllerName: "InsurancePolicy",
+				routeValues: new {
+				PartnerNumber = @item.PartnerNumber
+				},
+				htmlAttributes: null
+				)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<div class="modal" id="PartnerDetailsModal"></div>
+
+<script>
+	var eventSource = new EventSource("/api/PartnerVipUpdates/stream");
+	eventSource.onmessage = (event) => {
+		Array.from(document.querySelectorAll("td.partner-vip")).forEach(el => el.classList.remove("partner-vip"));
+		const partnerNumberList = JSON.parse(event.data);
+		partnerNumberList.forEach(pN => document.querySelector(`#PartnerRow-${pN} >td`)?.classList.add("partner-vip"));
+	}
+</script>

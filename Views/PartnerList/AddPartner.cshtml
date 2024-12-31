@@ -1,0 +1,85 @@
+@using Models
+@using Models.Enum
+@model Models.Partner
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Partner</h4>
+<hr />
+<div>
+    <div>
+        <form asp-action="AddPartner">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="from-group">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="alert-danger"></span>
+            </div>
+            <div class="from-group">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="alert-danger"></span>
+            </div>
+            <div class="from-group">
+                <label asp-for="Address"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="alert-danger"></span>
+            </div>
+            <div class="from-group">
+                <label asp-for="PartnerNumber"></label>
+                <input asp-for="PartnerNumber" class="form-control" />
+                <span asp-validation-for="PartnerNumber" class="alert-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CroatianPin"></label>
+                <input asp-for="CroatianPin" class="form-control" />
+                <span asp-validation-for="CroatianPin" class="alert-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartnerTypeId"></label>
+                <select asp-for="PartnerTypeId" asp-items="Html.GetEnumSelectList<EPartnerTypeId>()"
+                    class="form-control">
+                </select>
+                <span asp-validation-for="PartnerTypeId" class="alert-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedByUser"></label>
+                <input asp-for="CreatedByUser" class="form-control" />
+                <span asp-validation-for="CreatedByUser" class="alert-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsForeign"></label>
+                @Html.CheckBoxFor(m => m.IsForeign, "true")
+                <span asp-validation-for="IsForeign" class="alert-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExternalCode"></label>
+                <input asp-for="ExternalCode" class="form-control" />
+                <span asp-validation-for="ExternalCode" class="alert-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Gender"></label>
+                <select asp-for="Gender" class="form-control">
+                    <option value="N">Undefined</option>
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+                </select>
+                <span asp-validation-for="Gender" class="alert-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

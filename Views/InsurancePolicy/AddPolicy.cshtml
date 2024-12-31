@@ -1,0 +1,38 @@
+@using Models
+@model Models.InsurancePolicyModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Insurance policy</h4>
+<hr />
+<div >
+	<form asp-action="AddPolicy" >
+		<div asp-validation-summary="ModelOnly" ></div>
+		<div class="from-group">
+			<label asp-for="PolicyNumber" ></label>
+			<input asp-for="PolicyNumber"  class="form-control"/>
+			<span asp-validation-for="PolicyNumber" class="alert-danger"></span>
+		</div>
+		<div class="from-group">
+			<label asp-for="Amount" ></label>
+			<input asp-for="Amount"  class="form-control"/>
+			<span asp-validation-for="Amount" class="alert-danger" ></span>
+		</div>
+		<div class="from-group">
+			<label asp-for="PartnerNumber" ></label>
+			<input asp-for="PartnerNumber"  class="form-control"/>
+			<span asp-validation-for="PartnerNumber" class="alert-danger"></span>
+		</div>
+		<div class="form-group">
+			<input type="submit" value="Create" class="btn btn-primary" />
+		</div>
+	</form>
+</div>
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+
